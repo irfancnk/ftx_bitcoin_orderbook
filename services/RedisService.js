@@ -1,10 +1,10 @@
 // PACKAGES
 // MODULES
 
-class RedisService {
+module.exports = class RedisService {
     constructor() {
 
     }
 }
 
-module.exports = { RedisService };
+

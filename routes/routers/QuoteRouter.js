@@ -1,15 +1,9 @@
 // PACKAGES
 const express = require('express');
 // MODULES
-// const {
-//     userRegister,
-//     userUpdate,
-//     userLogin,
-//     getUser,
-//     getAllUsers,
-// } = require('./UserRouterCallback.js');
 
-class QuoteRouter {
+
+module.exports = class QuoteRouter {
 
     constructor(serviceProvider) {
         this.quoteRouter = express.Router();
@@ -29,4 +23,4 @@ class QuoteRouter {
     }
 }
 
-module.exports = { QuoteRouter };
+

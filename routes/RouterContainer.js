@@ -1,8 +1,8 @@
-const QuoteRouter = require('./Routers/QuoteRouter.js').QuoteRouter;
+const QuoteRouter = require('./Routers/QuoteRouter.js');
 
 
 
-class RouterContainer {
+module.exports = class RouterContainer {
 
     constructor(serviceProvider) {
         // Router quote
@@ -15,4 +15,4 @@ class RouterContainer {
 
 }
 
-module.exports = { RouterContainer }
+

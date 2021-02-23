@@ -2,8 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 // MODULES
-const RouterContainer = require('./routes/RouterContainer').RouterContainer;
-const ServiceProvider = require('./services/ServiceProvider').ServiceProvider;
+const RouterContainer = require('./routes/RouterContainer');
+const ServiceContainer = require('./services/ServiceContainer');
 const PORT = process.env.PORT || 5005;
 
 
@@ -11,7 +11,7 @@ class FTXServer {
 
     constructor() {
         this.app = express();
-        this.serviceProvider = new ServiceProvider();
+        this.serviceContainer = new ServiceContainer();
         this.routerContainer = new RouterContainer();
     }
 

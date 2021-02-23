@@ -1,9 +1,9 @@
-const RedisService = require('./RedisService').RedisService;
-const FtxWebSocketService = require('./FtxWebSocketService').FtxWebSocketService;
+const RedisService = require('./RedisService');
+const FtxWebSocketService = require('./FtxWebSocketService');
 
 
 
-class ServiceProvider {
+module.exports = class ServiceContainer {
     constructor() {
         this.redisService = new RedisService();
         this.ftxWebSocketService = new FtxWebSocketService(this.redisService);
@@ -14,7 +14,5 @@ class ServiceProvider {
         return this.ftxWebSocketService;
     }
 
-
 }
 
-module.exports = { ServiceProvider };

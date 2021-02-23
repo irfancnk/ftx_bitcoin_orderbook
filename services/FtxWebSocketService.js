@@ -4,7 +4,8 @@ const EventEmitter = require('events');
 // MODULES
 
 
-class FtxWebSocketService extends EventEmitter {
+module.exports = class FtxWebSocketService extends EventEmitter {
+
     constructor(config = {}) {
         super();
         this.WSendpoint = "ftx.com/ws/";
@@ -31,4 +32,4 @@ class FtxWebSocketService extends EventEmitter {
 
 }
 
-module.exports = { FtxWebSocketService };
+
