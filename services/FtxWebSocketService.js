@@ -12,25 +12,36 @@ module.exports = class FtxWebSocketService extends EventEmitter {
         this.ws = new WebSocket(`wss://${this.WSendpoint}`);
         
         this.ws.onmessage = this.handleMessage;
-        this.ws.onopen = () => { console.log("Connected"); }
+        this.ws.onopen = this.handleOnOpen;
         this.ws.onerror = e => { console.log(e.message); }
-        this.ws.onclose = async e => {
-            // console.log(new Date, '[FTX] CLOSED CON');
-            // this.emit('statusChange', 'close');
-            // this.authenticated = false;
-            // this.connected = false;
-            // clearInterval(this.heartbeat);
-            // this.reconnect();
-        }
+        this.ws.onclose = this.handleOnClose;
     }
 
-    handleWSMessage = e => {
+    handleOnOpen = (e) => {
+        this.ws.send(JSON.stringify({'op': 'ping'}));
+        // this.ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'trades', 'market': 'BTC-PERP'} ));
+        
+    }
+
+    handleMessage = e => {
+        console.log("Ping test");
+        console.log(e.data);
+    }
+
+    handleOnClose = (e) => {
         console.log(e);
     }
-
 
 
 
 }
 
 
+// Establish a websocket connection with wss://ftx.com/ws/ - 
+// (Optional) Authenticate with {'op': 'login', 'args': {'key': <api_key>, 'sign': <signature>, 'time': <ts>}} 
+// Send pings at regular intervals (every 15 seconds): {'op': 'ping'}. You will see an {'type': 'pong'} response.
+// Subscribe to a channel with {'op': 'subscribe', 'channel': 'trades', 'market': 'BTC-PERP'} 
+// Receive subscription response {'type': 'subscribed', 'channel': 'trades', 'market': 'BTC-PERP'}
+// Receive data {'type': 'update', 'channel': 'trades', 'market': 'BTC-PERP', 'data': {'bid': 5230.5, 'ask': 5231.0, 'ts': 1557133490.4047449, 'last': 5230.5}}
+// Unsubscribe {'op': 'unsubscribe', 'channel': 'trades', 'market': 'BTC-PERP'}
+// Receive unsubscription response {'type': 'unsubscribed', 'channel': 'trades', 'market': 'BTC-PERP'}
