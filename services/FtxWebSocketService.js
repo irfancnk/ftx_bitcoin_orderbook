@@ -10,7 +10,7 @@ module.exports = class FtxWebSocketService extends EventEmitter {
         super();
         this.WSendpoint = "ftx.com/ws/";
         this.ws = new WebSocket(`wss://${this.WSendpoint}`);
-        
+
         this.ws.onmessage = this.handleMessage;
         this.ws.onopen = this.handleOnOpen;
         this.ws.onerror = e => { console.log(e.message); }
@@ -19,12 +19,21 @@ module.exports = class FtxWebSocketService extends EventEmitter {
 
     handleOnOpen = (e) => {
         // this.ws.send(JSON.stringify({'op': 'ping'}));
-        this.ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'trades', 'market': 'BTC/USD'} ));
-        
+        this.ws.send(JSON.stringify({ 'op': 'subscribe', 'channel': 'orderbook', 'market': 'BTC/USD' }));
+
     }
 
     handleMessage = e => {
-        console.log(JSON.parse(e.data));
+        let { data } = JSON.parse(e.data);
+        if (data) {
+            // The bids and asks are formatted like so: [[best price, size at price], [next next best price, size at price], ...]
+            console.log("****** BIDS ******");
+            console.log(data.bids);
+            console.log("******************");
+            console.log("****** ASKS ******");
+            console.log(data.asks);
+            console.log("******************");
+        }
     }
 
     handleOnClose = (e) => {
