@@ -1,14 +1,14 @@
 // @route   POST quote/
-// @desc    Get All Users
-// @access  Private
-function placeOrder(req, res, ServiceProvider) {
+// @desc    Place order
+// @access  Public
+function handleOrder(req, res, serviceContainer) {
     console.log(req);
-    return res.status(500).json({});
+    return res.status(200).json({});
 }
 
 
 
 
 module.exports = {
-    placeOrder
+    handleOrder
 }

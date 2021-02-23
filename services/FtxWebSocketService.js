@@ -6,12 +6,13 @@ const EventEmitter = require('events');
 
 module.exports = class FtxWebSocketService extends EventEmitter {
 
-    constructor(config = {}) {
+    constructor() {
         super();
         this.WSendpoint = "ftx.com/ws/";
         this.ws = new WebSocket(`wss://${this.WSendpoint}`);
+        
         this.ws.onmessage = this.handleMessage;
-        this.ws.onopen = () => { console.log("connected"); }
+        this.ws.onopen = () => { console.log("Connected"); }
         this.ws.onerror = e => { console.log(e.message); }
         this.ws.onclose = async e => {
             // console.log(new Date, '[FTX] CLOSED CON');

@@ -12,15 +12,15 @@ class FTXServer {
     constructor() {
         this.app = express();
         this.serviceContainer = new ServiceContainer();
-        this.routerContainer = new RouterContainer();
+        this.routerContainer = new RouterContainer(this.serviceContainer);
     }
 
     async start() {
         this.app.use(bodyParser.json());
-        this.app.use('/quote', this.routerContainer.getQuoteRouter());
-        // this.app.listen(PORT, function () {
-        //     console.log("Express server listening on port : " + PORT);
-        // });
+        this.app.use('/api/quote', this.routerContainer.getQuoteRouter());
+        this.app.listen(PORT, function () {
+            console.log("Express server listening on port : " + PORT);
+        });
     }
 
 }

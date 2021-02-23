@@ -4,9 +4,9 @@ const QuoteRouter = require('./Routers/QuoteRouter.js');
 
 module.exports = class RouterContainer {
 
-    constructor(serviceProvider) {
+    constructor(serviceContainer) {
         // Router quote
-        this.quoteRouter = new QuoteRouter();
+        this.quoteRouter = new QuoteRouter(serviceContainer);
     }
 
     getQuoteRouter() {

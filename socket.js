@@ -9,7 +9,7 @@ const PONG = '{"type": "pong"}';
 const STALE_TIMEOUT = 2000;
 
 // this endpoint is used by the sample code on
-// https://github.com/ftexchange/ftx/blob/d387304bcc6f479e0ecae8273ad84eda986f5237/websocket/client.py#L13
+ // https://github.com/ftexchange/ftx/blob/d387304bcc6f479e0ecae8273ad84eda986f5237/websocket/client.py#L13
 const DEFAULT_ENDPOINT = 'ftx.com/ws/';
 
 // pass optional params: { key, secret, subaccount, endpoint }

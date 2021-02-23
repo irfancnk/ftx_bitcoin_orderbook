@@ -1,21 +1,23 @@
 // PACKAGES
 const express = require('express');
 // MODULES
-
+const {
+    handleOrder,
+} = require('./QuoteRouterRes');
 
 module.exports = class QuoteRouter {
 
-    constructor(serviceProvider) {
+    constructor(serviceContainer) {
         this.quoteRouter = express.Router();
-        // this.serviceProvider = serviceProvider;
-        // this.initializeRouter();
+        this.serviceContainer = serviceContainer;
+        this.initializeRouter();
     }
 
     initializeRouter() {
-        // this.userRouter.post(
-        //     '/login',
-        //     (req, res) => userLogin(req, res, this.serviceProvider)
-        // );
+        this.quoteRouter.post(
+            '/',
+            (req, res) => handleOrder(req, res, this.serviceContainer)
+        );
     }
 
     getRouter() {
