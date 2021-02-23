@@ -18,14 +18,13 @@ module.exports = class FtxWebSocketService extends EventEmitter {
     }
 
     handleOnOpen = (e) => {
-        this.ws.send(JSON.stringify({'op': 'ping'}));
-        // this.ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'trades', 'market': 'BTC-PERP'} ));
+        // this.ws.send(JSON.stringify({'op': 'ping'}));
+        this.ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'trades', 'market': 'BTC/USD'} ));
         
     }
 
     handleMessage = e => {
-        console.log("Ping test");
-        console.log(e.data);
+        console.log(JSON.parse(e.data));
     }
 
     handleOnClose = (e) => {
