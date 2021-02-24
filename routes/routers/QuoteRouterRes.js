@@ -2,7 +2,7 @@
 // @desc    Place order
 // @access  Public
 function handleOrder(req, res, serviceContainer) {
-    console.log(req);
+    console.log(req.body.action);
     return res.status(200).json({});
 }
 

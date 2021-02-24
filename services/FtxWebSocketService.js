@@ -6,8 +6,9 @@ const EventEmitter = require('events');
 
 module.exports = class FtxWebSocketService extends EventEmitter {
 
-    constructor() {
+    constructor(redisService) {
         super();
+        this.redisService = redisService;
         this.WSendpoint = "ftx.com/ws/";
         this.ws = new WebSocket(`wss://${this.WSendpoint}`);
 
@@ -18,21 +19,19 @@ module.exports = class FtxWebSocketService extends EventEmitter {
     }
 
     handleOnOpen = (e) => {
-        // this.ws.send(JSON.stringify({'op': 'ping'}));
         this.ws.send(JSON.stringify({ 'op': 'subscribe', 'channel': 'orderbook', 'market': 'BTC/USD' }));
-
     }
 
     handleMessage = e => {
-        let { data } = JSON.parse(e.data);
+        // The bids and asks are formatted like so: [[best price, size at price], [next next best price, size at price], ...]
+        const { data } = JSON.parse(e.data);
         if (data) {
-            // The bids and asks are formatted like so: [[best price, size at price], [next next best price, size at price], ...]
-            console.log("****** BIDS ******");
-            console.log(data.bids);
-            console.log("******************");
-            console.log("****** ASKS ******");
-            console.log(data.asks);
-            console.log("******************");
+            const { action } = data;
+            if (action && action === 'partial') {
+                this.redisService.initializeOrderBook(data);
+            } else if (action && action === 'update') {
+                this.redisService.updateOrderBook(data);
+            }
         }
     }
 
