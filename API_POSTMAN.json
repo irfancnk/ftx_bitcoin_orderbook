@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "05cdf9cf-ca90-472c-ab8a-ca350469a419",
+		"name": "BILIRA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BUY BTC",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"buy\",\r\n    \"base_currency\": \"BTC\",\r\n    \"quote_currency\": \"USD\",\r\n    \"amount\": 1.00000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/quote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"quote"
+					]
+				},
+				"description": "BILIRA"
+			},
+			"response": []
+		},
+		{
+			"name": "SELL BTC",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"sell\",\r\n    \"base_currency\": \"BTC\",\r\n    \"quote_currency\": \"USD\",\r\n    \"amount\": 2.00000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/quote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"quote"
+					]
+				},
+				"description": "BILIRA"
+			},
+			"response": []
+		},
+		{
+			"name": "BUY USD",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"buy\",\r\n    \"base_currency\": \"USD\",\r\n    \"quote_currency\": \"BTC\",\r\n    \"amount\": 25000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/quote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"quote"
+					]
+				},
+				"description": "BILIRA"
+			},
+			"response": []
+		},
+		{
+			"name": "SELL USD",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"sell\",\r\n    \"base_currency\": \"USD\",\r\n    \"quote_currency\": \"BTC\",\r\n    \"amount\": 25000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/quote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"quote"
+					]
+				},
+				"description": "BILIRA"
+			},
+			"response": []
+		}
+	]
+}
