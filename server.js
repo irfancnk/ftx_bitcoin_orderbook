@@ -21,6 +21,7 @@ class FTXServer {
 
     async start() {
         this.app.use(bodyParser.json());
+        this.app.use('/', this.routerContainer.getTestRouter());
         this.app.use('/api/quote', this.routerContainer.getQuoteRouter());
         try {
             console.log("Initializing FTX WebSocket service.");
