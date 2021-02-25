@@ -15,17 +15,24 @@ module.exports = class RedisService {
         this.orderBook.bids = data.bids;
         this.orderBook.asks = data.asks;
         setInterval(function () {
-            console.log("***************************************");
+            console.log(`====================================`);
             console.log(`Timestamp : ${Date.now()}`);
-            console.log(`Min Ask   : ${self.orderBook.asks[0]}`);
-            console.log(`Max Bid   : ${self.orderBook.bids[self.orderBook.bids.length - 1]}`);
-            console.log("***************************************");
-        }, 1000)
+            console.log(`Min Price : ${self.orderBook.asks[0][0]} Size : ${self.orderBook.asks[0][1]}`);
+            console.log(`Max Price : ${self.orderBook.bids[self.orderBook.bids.length - 1][0]} Size : ${self.orderBook.bids[self.orderBook.bids.length - 1][1]}`);
+        }, 1000);
     }
 
     updateOrderBook(data) {
         this._updateAsks(data.asks);
         this._updateBids(data.bids);
+    }
+
+    getBids() {
+        return JSON.parse(JSON.stringify(this.orderBook.bids));
+    }
+
+    getAsks() {
+        return JSON.parse(JSON.stringify(this.orderBook.asks));
     }
 
     getOrderBook() {

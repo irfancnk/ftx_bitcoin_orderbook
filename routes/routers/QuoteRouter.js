@@ -16,7 +16,7 @@ module.exports = class QuoteRouter {
     initializeRouter() {
         this.quoteRouter.post(
             '/',
-            (req, res) => handleOrder(req, res, this.serviceContainer)
+            handleOrder(this.serviceContainer)
         );
     }
 
