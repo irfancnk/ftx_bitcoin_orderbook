@@ -17,7 +17,10 @@ function handleOrder(serviceContainer) {
     }
 }
 
-// Validate request body format
+/**
+ * Checks whether the request has required fields for handling
+ * @param {*} body Received request body
+ */
 function isValid(body) {
     if (body.action
         && (body.action === 'buy' || body.action === 'sell')

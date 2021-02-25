@@ -1,3 +1,7 @@
+
+/**
+ * This class contains the information returned from the endpoint
+ */
 module.exports = class Order {
     constructor(quote_currency) {
         this.total = 0;

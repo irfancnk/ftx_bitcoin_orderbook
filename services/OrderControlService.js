@@ -3,12 +3,21 @@
 const Order = require('../models/Order');
 
 
+/**
+ * This class handles the BTC/USD transactions by using sorted
+ * orderbooks of Redis Service
+ */
 module.exports = class OrderControlService {
 
     constructor(redisService) {
         this.redisService = redisService;
     }
 
+    /**
+     * Methods takes validated order object and handles the request using 
+     * orderbook list
+     * @param {*} order Object that defines desired BTC/USD - Buy/Sell operation
+     */
     handleOrder(order) {
         // Target Currency
         const orderResponse = new Order(order.quote_currency);
