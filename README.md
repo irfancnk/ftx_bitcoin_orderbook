@@ -12,7 +12,7 @@ then
 npm start
 ```
 The API should be available on localhost:5005.
-You can reach out to default point from browser.
+You can reach out to default endpoint from browser.
 ```
 {
     "test": "Happy hacking!"
