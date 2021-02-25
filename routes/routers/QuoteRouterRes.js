@@ -2,6 +2,21 @@
 // MODULES
 const Order = require('../../models/Order');
 
+// @route   POST quote/
+// @desc    Place order
+// @access  Public
+function handleOrder(serviceContainer) {
+    return function (req, res) {
+        if (isValid(req.body)) {
+            let result = serviceContainer.getOrderControllerService().handleOrder(
+                req.body
+            );
+            return res.status(200).json(result);
+        }
+        return res.status(401).json({ error: 'Bad request.' });
+    }
+}
+
 // Validate request body format
 function isValid(body) {
     if (body.action
@@ -15,19 +30,6 @@ function isValid(body) {
         return true;
     }
     return false;
-}
-
-// @route   POST quote/
-// @desc    Place order
-// @access  Public
-function handleOrder(serviceContainer) {
-    return function (req, res) {
-        if (isValid(req.body)) {
-            let result = serviceContainer.getOrderControllerService().handleOrder();
-            return res.status(200).json(result);
-        }
-        return res.status(401).json({ error: 'Bad request.' });
-    }
 }
 
 

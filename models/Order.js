@@ -1,8 +1,8 @@
 module.exports = class Order {
-    constructor() {
+    constructor(quote_currency) {
         this.total = 0;
         this.price = 0;
-        this.currency = ''
+        this.currency = quote_currency
     }
 
     setTotal(total) {
@@ -11,10 +11,6 @@ module.exports = class Order {
 
     setPrice(price) {
         this.price = price;
-    }
-
-    setCurrency(currency) {
-        this.currency = currency;
     }
 
 }
